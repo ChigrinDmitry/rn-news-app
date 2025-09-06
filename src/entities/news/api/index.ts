@@ -32,4 +32,12 @@ export const newsApi = {
     const ok = assertOk(res.data);
     return { articles: ok.articles as NewsArticle[], total: ok.totalResults };
   },
+
+  async getNewsByCategory(category: string, page: number = 1) {
+    const res = await apiClient.get<NewsResponce>('/top-headlines', {
+      params: { category, country: 'us', page, pageSize: 10 },
+    });
+    const ok = assertOk(res.data);
+    return { articles: ok.articles as NewsArticle[], total: ok.totalResults };
+  },
 };
